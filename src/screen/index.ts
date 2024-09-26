@@ -1,0 +1,8 @@
+export { default as Home } from "./Home";
+export { default as Flashcards } from "./Flashcards";
+export { default as Test } from "./Test";
+export { default as Profile } from "./Profile";
+export { default as Course } from "./Course";
+export { default as SelfCourse } from "./SelfCourse";
+export { default as SetFlashCards } from "./SetFlashCards";
+
