@@ -104,58 +104,60 @@ const SignIn: React.FC = () => {
                   setSubmitting(false);
                 }}
               >
-                {(props) => (
-                  <form onSubmit={props.handleSubmit} action="" method="POST">
-                    <div className="my-large flex flex-col gap-large">
-                      <TextInput
-                        id="username"
-                        name="username"
-                        label="username"
-                        type="text"
-                        placeholder="duytaan123"
-                        value={props.values.username.replace(/\s+/g, "")}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                        errorText={
-                          props.touched.username && props.errors.username
-                            ? props.errors.username
-                            : undefined
-                        }
-                        className={`py-xsmall px-small bg-gray-200 text-gray-600 rounded-lg text-small focus:outline-none border-2 focus:border-b-gray-600 ${
-                          props.errors.username && props.touched.username
-                            ? "border-b-error-300"
-                            : ""
-                        }`}
-                      />
-                      <TextInput
-                        id="password"
-                        name="password"
-                        label="password"
-                        type="password"
-                        placeholder="********"
-                        value={props.values.password}
-                        onChange={props.handleChange}
-                        onBlur={props.handleBlur}
-                        errorText={
-                          props.touched.password && props.errors.password
-                            ? props.errors.password
-                            : undefined
-                        }
-                        className={`py-xsmall px-small bg-gray-200 text-gray-600 rounded-lg text-small focus:outline-none border-2 focus:border-b-gray-600 ${
-                          props.errors.password && props.touched.password
-                            ? "border-b-error-300"
-                            : ""
-                        }`}
-                      />
-                      <Button
-                        type="submit"
-                        buttonClass="w-full py-5 px-large text-center text-gray-100 text-small font-semibold bg-twilight-500 hover:bg-twilight-600 transition-all rounded-lg"
-                      >
-                        Sign in
-                      </Button>
-                    </div>
-                  </form>
-                )}
+                {(props) => {
+                  return (
+                    <form onSubmit={props.handleSubmit} action="" method="POST">
+                      <div className="my-large flex flex-col gap-large">
+                        <TextInput
+                          id="username"
+                          name="username"
+                          label="username"
+                          type="text"
+                          placeholder="duytaan123"
+                          value={props.values.username.replace(/\s+/g, "")}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          errorText={
+                            props.touched.username && props.errors.username
+                              ? props.errors.username
+                              : undefined
+                          }
+                          className={`py-xsmall px-small bg-gray-200 text-gray-600 rounded-lg text-small focus:outline-none border-2 focus:border-b-gray-600 ${
+                            props.errors.username && props.touched.username
+                              ? "border-b-error-300"
+                              : ""
+                          }`}
+                        />
+                        <TextInput
+                          id="password"
+                          name="password"
+                          label="password"
+                          type="password"
+                          placeholder="********"
+                          value={props.values.password}
+                          onChange={props.handleChange}
+                          onBlur={props.handleBlur}
+                          errorText={
+                            props.touched.password && props.errors.password
+                              ? props.errors.password
+                              : undefined
+                          }
+                          className={`py-xsmall px-small bg-gray-200 text-gray-600 rounded-lg text-small focus:outline-none border-2 focus:border-b-gray-600 ${
+                            props.errors.password && props.touched.password
+                              ? "border-b-error-300"
+                              : ""
+                          }`}
+                        />
+                        <Button
+                          type="submit"
+                          buttonClass="w-full py-5 px-large text-center text-gray-100 text-small font-semibold bg-twilight-500 hover:bg-twilight-600 transition-all rounded-lg"
+                        >
+                          Sign in
+                        </Button>
+                      </div>
+                    </form>
+                  );
+                }}
               </Formik>
             </div>
           </div>

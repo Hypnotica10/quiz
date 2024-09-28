@@ -2,6 +2,8 @@ import { TextInputProps } from "../types/componentType";
 
 const TextInput: React.FC<TextInputProps> = (props) => {
   const { label, errorText, helpText, onChangeText, ...inputProps } = props;
+
+  // const { setFieldValue } = useFormikContext();
   return (
     <div className="flex flex-col overflow-hidden">
       <div className="flex gap-small">
@@ -9,9 +11,7 @@ const TextInput: React.FC<TextInputProps> = (props) => {
           htmlFor={inputProps.id || inputProps.name}
           className="text-base font-semibold text-gray-600 mb-xsmall flex gap-xxsmall capitalize"
         >
-          {errorText && (
-            <span className="text-error-300 italic">*</span>
-          )}
+          {errorText && <span className="text-error-300 italic">*</span>}
           <span>{label}</span>
         </label>
         <div className="">
@@ -24,7 +24,6 @@ const TextInput: React.FC<TextInputProps> = (props) => {
       <input
         {...inputProps}
         onChange={(e) => {
-          // override on change to fire change text event
           inputProps.onChange?.(e);
           onChangeText?.(e.target.value);
         }}

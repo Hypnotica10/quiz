@@ -9,7 +9,7 @@ const Edit: React.FC = () => {
       xmlnsXlink="http://www.w3.org/1999/xlink"
       viewBox="0 0 512.008 512.008"
       xmlSpace="preserve"
-      fill="curretnColor"
+      fill="currentColor"
     >
       <g>
         <g>

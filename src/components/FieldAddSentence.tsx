@@ -1,81 +1,19 @@
-import React, { ChangeEvent, FocusEvent, useState } from "react";
+import React from "react";
+import { useCreateFlashcards } from "../context/CreateFlashcardsContext";
 import { ISentence } from "../types/sentence";
 import Button from "./Button";
+import SentencePreview from "./SentencePreview";
 
-const initialValues: ISentence = {
-  term: "",
-  definition: "",
-};
-
-type FieldAddSentenceProps = {
-  passDataFromChildToParent: (data: ISentence[]) => void;
-};
-
-const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
-  const { passDataFromChildToParent } = props;
-  const [listSentences, setListSentences] = useState<ISentence[]>([]);
-  const [error, setError] = useState<{
-    term: boolean;
-    definition: boolean;
-  }>({
-    term: false,
-    definition: false,
-  });
-  const [sentence, setSentence] = useState<ISentence>(initialValues);
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSentence((sentence) => ({
-      ...sentence,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleOnBlur = (e: FocusEvent<HTMLInputElement>) => {
-    if (e.target.value === "") {
-      setError({
-        ...error,
-        [e.target.name]: true,
-      });
-      return;
-    } else
-      setError({
-        ...error,
-        [e.target.name]: false,
-      });
-  };
-
-  const handleClickAdd = () => {
-    if (!sentence.definition?.trim() || !sentence.term?.trim()) {
-      setError({
-        term: !sentence.term?.trim(),
-        definition: !sentence.definition?.trim(),
-      });
-      return;
-    }
-    if (sentence.term && sentence.definition) {
-      setError({
-        term: false,
-        definition: false,
-      });
-    }
-    if (error.term || error.definition) {
-      return;
-    }
-    const newListSentences = [
-      ...listSentences,
-      {
-        term: sentence.term.trim(),
-        definition: sentence.definition.trim(),
-      },
-    ];
-    setListSentences(newListSentences);
-    setSentence(initialValues);
-    passDataFromChildToParent(newListSentences);
-  };
-
-  const handleClickReset = () => {
-    setSentence(initialValues);
-  };
+const FieldAddSentence: React.FC = () => {
+  const {
+    error,
+    sentence,
+    sentences,
+    handleOnChange,
+    handleOnBlur,
+    handleClickAdd,
+    handleClickReset,
+  } = useCreateFlashcards();
 
   return (
     <div className="py-medium flex flex-col gap-large">
@@ -94,13 +32,13 @@ const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
                 error.term
                   ? "before:bg-error-300"
                   : "before:bg-gray-800 focus-within:before:bg-sunset-400"
-              } bg-gray-100 h-12 text-gray-600 overflow-hidden relative flex flex-col justify-center before:w-full before:h-0.5 before:absolute before:bottom-0 before:left-0 before:transition-all`}
+              } bg-gray-100 py-xxsmall text-gray-600 overflow-hidden relative flex flex-col justify-center before:w-full before:h-0.5 before:absolute before:bottom-0 before:left-0 before:transition-all`}
             >
               <input
                 onBlur={handleOnBlur}
                 onChange={handleOnChange}
                 value={sentence.term}
-                className="font-normal text-small border-none outline-none text-gray-800 peer"
+                className="font-normal text-small border-none outline-none text-gray-800"
                 type="text"
                 maxLength={255}
                 placeholder="Enter term"
@@ -117,13 +55,13 @@ const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
                 error.definition
                   ? "before:bg-error-300"
                   : "focus-within:before:bg-sunset-400 before:bg-gray-800"
-              } bg-gray-100 h-12 text-gray-600 overflow-hidden relative flex flex-col justify-center before:w-full before:h-0.5 before:absolute before:bottom-0 before:left-0 before:transition-all`}
+              } bg-gray-100 py-xxsmall text-gray-600 overflow-hidden relative flex flex-col justify-center before:w-full before:h-0.5 before:absolute before:bottom-0 before:left-0 before:transition-all`}
             >
               <input
                 onBlur={handleOnBlur}
                 onChange={handleOnChange}
                 value={sentence.definition}
-                className="font-normal text-small border-none outline-none text-gray-800 peer"
+                className="font-normal text-small border-none outline-none text-gray-800"
                 type="text"
                 maxLength={255}
                 placeholder="Enter definition"
@@ -158,8 +96,12 @@ const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
           </div>
         </div>
       </div>
-      <div className="preview">
+      <div className="preview flex flex-col gap-large">
         {/* <DndContext collisionDetection={closestCorners}></DndContext> */}
+        {sentences &&
+          sentences.map((_item: ISentence, index: number) => (
+            <SentencePreview key={index} index={index} />
+          ))}
       </div>
     </div>
   );

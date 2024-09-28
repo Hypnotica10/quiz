@@ -4,8 +4,9 @@ import {
   ImgHTMLAttributes,
   InputHTMLAttributes,
   MouseEventHandler,
-  ReactNode
+  ReactNode,
 } from "react";
+import { ISentence } from "./sentence";
 
 // default HTML props for an input
 type DefaultTextInputProps = DetailedHTMLProps<
@@ -62,3 +63,6 @@ export type ConfettiAnimationProps = {
   height: number;
 };
 
+export type SentencePreviewProps = {
+  index: number;
+};

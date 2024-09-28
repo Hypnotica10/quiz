@@ -41,9 +41,11 @@ const Course: React.FC = () => {
                   className="pb-xxsmall overflow-hidden border-2 border-gray-300 rounded-medium bg-gray-100 relative before:absolute before:w-full before:h-1 before:bg-twilight-300 before:bottom-0 before:left-0 before:opacity-0 hover:before:opacity-100 before:transition-all"
                 >
                   <Link
-                    to={`/course/${course.id}/${generateSlug(
-                      course?.title
-                    )}-${generateSlug(course?.description)}`}
+                    to={`/course/${course.id}/${generateSlug(course?.title)}${
+                      course?.description
+                        ? "-" + generateSlug(course?.description)
+                        : ""
+                    }`}
                   >
                     <div className="p-small">
                       <div className="flex flex-col items-start">

@@ -101,10 +101,6 @@ const SelfCourse: React.FC = () => {
     };
     getSentences(courseId, accessToken);
     getCourse(courseId, accessToken);
-
-    if (flashcardsCompleteRef.current) {
-      console.log(flashcardsCompleteRef.current.getBoundingClientRect());
-    }
   }, []);
 
   return (
