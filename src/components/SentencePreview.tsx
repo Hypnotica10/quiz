@@ -1,16 +1,16 @@
 import React, { ChangeEvent, useState } from "react";
-import {
-  Sentence,
-  useCreateFlashcards,
-} from "../context/CreateFlashcardsContext";
-import { SentencePreviewProps } from "../types/componentType";
+import { Sentence, SentencePreviewProps } from "../types/componentType";
 import Icon from "./common/Icon";
 
 const SentencePreview: React.FC<SentencePreviewProps> = (props) => {
-  const { index } = props;
-  const { handleClickEdit, handleClickDelete, sentences, updateSentences } =
-    useCreateFlashcards();
-  const [newValue, setNewValue] = useState<Sentence>(sentences[index]);
+  const {
+    index,
+    listSentences,
+    handleClickEdit,
+    handleClickDelete,
+    updateSentences,
+  } = props;
+  const [newValue, setNewValue] = useState<Sentence>(listSentences[index]);
   const [error, setError] = useState<{
     term: boolean;
     definition: boolean;
@@ -44,8 +44,6 @@ const SentencePreview: React.FC<SentencePreviewProps> = (props) => {
     updateSentences(newValue, index);
   };
 
-  console.log(sentences);
-
   return (
     <div
       className={`${
@@ -63,7 +61,7 @@ const SentencePreview: React.FC<SentencePreviewProps> = (props) => {
               value={newValue.term}
               onChange={handleOnChangeEdit}
               className="bg-gray-100 border-none outline-none focus:outline-none text-small"
-              disabled={!sentences[index].isEditing}
+              disabled={!listSentences[index].isEditing}
               name="term"
             />
           </label>
@@ -74,14 +72,14 @@ const SentencePreview: React.FC<SentencePreviewProps> = (props) => {
               value={newValue.definition}
               onChange={handleOnChangeEdit}
               className="bg-gray-100 border-none outline-none focus:outline-none text-small"
-              disabled={!sentences[index].isEditing}
+              disabled={!listSentences[index].isEditing}
               name="definition"
             />
           </label>
         </div>
       </div>
       <div className="flex gap-small">
-        {sentences[index].isEditing ? (
+        {listSentences[index].isEditing ? (
           <div
             onClick={handleClickUpdate}
             className="w-10 h-10 flex items-center justify-center cursor-pointer p-xsmall text-gray-100 bg-success-400 rounded-medium"

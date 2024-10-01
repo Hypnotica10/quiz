@@ -49,3 +49,20 @@ export const createCourse = async <T = any>(
   }).catch((error) => handleError(error));
   return handleResponse({ response });
 };
+
+export const updateCourseById = async <T = any>(
+  path: string,
+  accessToken: string,
+  body: IPostCourse,
+): Promise<T> => {
+  const response: Response | null = await fetch(urlRequestFull(path), {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    body: JSON.stringify(body),
+    credentials: "include",
+  }).catch((error) => handleError(error));
+  return handleResponse({ response });
+};

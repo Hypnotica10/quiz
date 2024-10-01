@@ -2,7 +2,9 @@ import { Route, Routes } from "react-router-dom";
 import { Drawer, Layout, PrivateRoute, NotFound } from "../components";
 import { useAuthContext } from "../context/AuthContext";
 import {
+  CopyFlashcards,
   Course,
+  EditFlashcard,
   Flashcards,
   Home,
   Profile,
@@ -28,7 +30,11 @@ const AppRoutes: React.FC = () => {
               <Route path=":courseId/:courseTitle" element={<SelfCourse />} />
             </Route>
 
-            <Route path="/flashcards/set" element={<SetFlashCards />} />
+            <Route path="/flashcards">
+              <Route path="set" element={<SetFlashCards />} />
+              <Route path="copy" element={<CopyFlashcards />} />
+              <Route path="edit/:courseId" element={<EditFlashcard />} />
+            </Route>
 
             <Route path="/user">
               <Route path=":userId" element={<Profile />} />

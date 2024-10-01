@@ -1,11 +1,15 @@
 import {
   ButtonHTMLAttributes,
+  ChangeEventHandler,
   DetailedHTMLProps,
+  FocusEventHandler,
   ImgHTMLAttributes,
   InputHTMLAttributes,
+  MouseEvent,
   MouseEventHandler,
   ReactNode,
 } from "react";
+import { IPostCourse } from "./course";
 import { ISentence } from "./sentence";
 
 // default HTML props for an input
@@ -63,6 +67,46 @@ export type ConfettiAnimationProps = {
   height: number;
 };
 
+type Editing = {
+  isEditing?: boolean;
+};
+
+export type Sentence = Omit<ISentence, "image"> & Editing;
+
+export type InformationFlashcards = Required<
+  Omit<IPostCourse, "userId" | "sentences" | "id">
+>;
+
+export type ErrorCreateFlashcards = {
+  title: boolean;
+  majorId: boolean;
+  term: boolean;
+  definition: boolean;
+};
+
+export type FieldAddSentenceProps = {
+  error: ErrorCreateFlashcards;
+  sentence: Sentence;
+  handleOnBlur: FocusEventHandler<HTMLInputElement | HTMLSelectElement>;
+  handleOnChange: ChangeEventHandler<HTMLInputElement | HTMLSelectElement>;
+  handleClickAdd: () => void;
+  handleClickReset: () => void;
+};
+
 export type SentencePreviewProps = {
   index: number;
+  listSentences: Sentence[];
+  handleClickEdit: (e: MouseEvent<HTMLDivElement>, indexNumber: number) => void;
+  handleClickDelete: (
+    e: MouseEvent<HTMLDivElement>,
+    indexNumber: number
+  ) => void;
+  updateSentences: (newValue: Sentence, indexNumber: number) => void;
+};
+
+export type InitialValuesUseFlashcards = {
+  error: ErrorCreateFlashcards;
+  informationFlashcards: InformationFlashcards;
+  sentence: Sentence;
+  listSentences: Sentence[];
 };

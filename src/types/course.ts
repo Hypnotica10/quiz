@@ -13,9 +13,10 @@ export interface ICourse {
 }
 
 export interface IPostCourse {
+  id?: string | number;
   title?: string;
   description?: string;
-  majorId?: number | string;
-  userId?: number | string;
+  majorId?: string;
+  userId?: string;
   sentences?: ISentence[];
 }

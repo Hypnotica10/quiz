@@ -1,20 +1,16 @@
 import React from "react";
-import { useCreateFlashcards } from "../context/CreateFlashcardsContext";
-import { ISentence } from "../types/sentence";
 import Button from "./Button";
-import SentencePreview from "./SentencePreview";
+import { FieldAddSentenceProps } from "../types/componentType";
 
-const FieldAddSentence: React.FC = () => {
+const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
   const {
     error,
     sentence,
-    sentences,
-    handleOnChange,
     handleOnBlur,
+    handleOnChange,
     handleClickAdd,
     handleClickReset,
-  } = useCreateFlashcards();
-
+  } = props;
   return (
     <div className="py-medium flex flex-col gap-large">
       <div className="bg-gray-100 rounded-medium">
@@ -95,13 +91,6 @@ const FieldAddSentence: React.FC = () => {
             </div>
           </div>
         </div>
-      </div>
-      <div className="preview flex flex-col gap-large">
-        {/* <DndContext collisionDetection={closestCorners}></DndContext> */}
-        {sentences &&
-          sentences.map((_item: ISentence, index: number) => (
-            <SentencePreview key={index} index={index} />
-          ))}
       </div>
     </div>
   );

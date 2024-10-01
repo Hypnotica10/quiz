@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   Button,
   CompleteAnimation,
@@ -66,10 +66,7 @@ const SelfCourse: React.FC = () => {
   };
   useEffect(() => {
     const accessToken = localStorage.getItem("access_token") || "";
-    const getCourse = async (
-      courseId: string = "",
-      accessToken: string
-    ): Promise<void> => {
+    const getCourse = async (courseId: string = ""): Promise<void> => {
       try {
         const resJson = await getCourseById("/course", accessToken, courseId);
         if (resJson) {
@@ -81,10 +78,7 @@ const SelfCourse: React.FC = () => {
       }
     };
 
-    const getSentences = async (
-      courseId: string = "",
-      accessToken: string
-    ): Promise<void> => {
+    const getSentences = async (courseId: string = ""): Promise<void> => {
       try {
         const resJson = await getSentencesByCourseId(
           "/sentence/all",
@@ -99,8 +93,8 @@ const SelfCourse: React.FC = () => {
         console.log(error);
       }
     };
-    getSentences(courseId, accessToken);
-    getCourse(courseId, accessToken);
+    getSentences(courseId);
+    getCourse(courseId);
   }, []);
 
   return (
@@ -311,13 +305,20 @@ const SelfCourse: React.FC = () => {
             </div>
             {course?.user?.id ===
             JSON.parse(localStorage.getItem("user") || "")?.id ? (
-              <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
-                <Icon iconName="edit" />
-              </div>
+              <Link
+                to={`/flashcards/edit/${course?.id}`}
+                state={{ courseId: course?.id }}
+              >
+                <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
+                  <Icon iconName="edit" />
+                </div>
+              </Link>
             ) : (
-              <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
-                <Icon iconName="copy" />
-              </div>
+              <Link to="/flashcards/copy" state={{ courseId: course?.id }}>
+                <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
+                  <Icon iconName="copy" />
+                </div>
+              </Link>
             )}
           </div>
           <div className="flex flex-col gap-small">

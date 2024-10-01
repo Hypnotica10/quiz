@@ -5,4 +5,5 @@ export { default as Profile } from "./Profile";
 export { default as Course } from "./Course";
 export { default as SelfCourse } from "./SelfCourse";
 export { default as SetFlashCards } from "./SetFlashCards";
-
+export { default as CopyFlashcards } from "./CopyFlashcards";
+export { default as EditFlashcard } from "./EditFlashcard";

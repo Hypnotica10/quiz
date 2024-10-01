@@ -47,13 +47,13 @@ const Course: React.FC = () => {
                         : ""
                     }`}
                   >
-                    <div className="p-small">
+                    <div className="p-small h-full flex flex-col justify-between">
                       <div className="flex flex-col items-start">
                         <h2 className="w-full text-small font-semibold text-gray-800 truncate">
                           {course.title}
                         </h2>
                         {course.description && (
-                          <div className="w-full truncate">
+                          <div className="w-full flex items-center truncate">
                             <span className="text-base font-medium text-gray-600">
                               {course.description}
                             </span>
