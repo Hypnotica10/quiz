@@ -24,7 +24,7 @@ const initialState = {
   },
 };
 
-const SetFlashCards: React.FC = () => {
+const SetCourse: React.FC = () => {
   const {
     listMajor,
     error,
@@ -123,7 +123,7 @@ const SetFlashCards: React.FC = () => {
                 sentence={sentence}
               />
             </div>
-            <div className="preview flex flex-col gap-large">
+            <div className="preview flex flex-col gap-large py-medium">
               {listSentences &&
                 listSentences.map((_item: ISentence, index: number) => (
                   <SentencePreview
@@ -136,7 +136,7 @@ const SetFlashCards: React.FC = () => {
                   />
                 ))}
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end py-medium">
               <Button
                 handleClick={handleClickCreate}
                 buttonClass="py-small px-large border-2 border-gray-400 text-gray-600 bg-gray-200 font-semibold text-small rounded-medium transition-all hover:bg-gray-300"
@@ -152,4 +152,4 @@ const SetFlashCards: React.FC = () => {
   );
 };
 
-export default SetFlashCards;
+export default SetCourse;

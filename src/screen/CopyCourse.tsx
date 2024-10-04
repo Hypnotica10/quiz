@@ -24,7 +24,7 @@ const initialState = {
   },
 };
 
-const CopyFlashcards: React.FC = () => {
+const CopyCourse: React.FC = () => {
   const {
     listMajor,
     error,
@@ -152,4 +152,4 @@ const CopyFlashcards: React.FC = () => {
   );
 };
 
-export default CopyFlashcards;
+export default CopyCourse;

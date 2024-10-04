@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-    * {
-        @apply scroll-smooth
-    }
-
     ::-moz-selection {
         /* Code for Firefox */
         @apply bg-twilight-200

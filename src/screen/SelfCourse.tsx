@@ -282,17 +282,21 @@ const SelfCourse: React.FC = () => {
       </div>
       <div className="w-4/6 py-large mx-auto">
         <div className="flex gap-small items-center">
-          <div className="w-12 h-12 rounded-full overflow-hidden cursor-pointer">
-            <Image
-              className="w-full h-full rounded-full"
-              imageName={course?.user?.avatar || ""}
-            />
-          </div>
+          <Link to={`/user/${course?.user?.id}/sets`}>
+            <div className="w-12 h-12 rounded-full overflow-hidden cursor-pointer">
+              <Image
+                className="w-full h-full rounded-full"
+                imageName={course?.user?.avatar || ""}
+              />
+            </div>
+          </Link>
           <div className="flex flex-col">
             <span className="text-base text-gray-500">Created by</span>
-            <span className="text-small text-gray-800 font-semibold cursor-pointer">
-              {course?.user?.name}
-            </span>
+            <Link to={`/user/${course?.user?.id}/sets`}>
+              <span className="text-small text-gray-800 font-semibold cursor-pointer">
+                {course?.user?.name}
+              </span>
+            </Link>
           </div>
         </div>
       </div>

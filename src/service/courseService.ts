@@ -66,3 +66,34 @@ export const updateCourseById = async <T = any>(
   }).catch((error) => handleError(error));
   return handleResponse({ response });
 };
+
+export const getCourseByUserId = async <T = any>(
+  path: string,
+  accessToken: string,
+): Promise<T> => {
+  const response: Response | null = await fetch(urlRequestFull(path), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    credentials: "include",
+  }).catch((error) => handleError(error));
+  return handleResponse({ response });
+};
+
+export const deleteCourseByCourseId = async <T = any>(
+  path: string,
+  accessToken: string,
+): Promise<T> => {
+  const response: Response | null = await fetch(urlRequestFull(path), {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    credentials: "include",
+  }).catch((error) => handleError(error));
+  return handleResponse({ response });
+};
+

@@ -24,7 +24,7 @@ const initialState = {
   },
 };
 
-const EditFlashcard: React.FC = () => {
+const EditCourse: React.FC = () => {
   const {
     listMajor,
     error,
@@ -151,4 +151,4 @@ const EditFlashcard: React.FC = () => {
   );
 };
 
-export default EditFlashcard;
+export default EditCourse;

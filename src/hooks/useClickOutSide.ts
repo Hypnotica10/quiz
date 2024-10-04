@@ -14,5 +14,5 @@ export const useClickOutSide = <T extends HTMLElement>(
     document.addEventListener("click", handleClick);
 
     return () => document.removeEventListener("click", handleClick);
-  });
+  }, []);
 };

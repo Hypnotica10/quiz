@@ -7,7 +7,7 @@ import {
   InputHTMLAttributes,
   MouseEvent,
   MouseEventHandler,
-  ReactNode,
+  ReactNode
 } from "react";
 import { IPostCourse } from "./course";
 import { ISentence } from "./sentence";
@@ -109,4 +109,10 @@ export type InitialValuesUseFlashcards = {
   informationFlashcards: InformationFlashcards;
   sentence: Sentence;
   listSentences: Sentence[];
+};
+
+export type OverlayProps = {
+  children: ReactNode;
+  handleOnClose: MouseEventHandler<HTMLDivElement>;
+  isOverlayActive: boolean;
 };

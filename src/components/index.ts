@@ -12,3 +12,4 @@ export { default as CompleteAnimation } from "./CompleteAnimation";
 export { default as UploadImage } from "./UploadImage";
 export { default as FieldAddSentence } from "./FieldAddSentence";
 export { default as SentencePreview } from "./SentencePreview";
+export { default as Overlay } from "./Overlay";

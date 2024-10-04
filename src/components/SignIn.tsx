@@ -46,6 +46,7 @@ const SignIn: React.FC = () => {
           });
           handleClickSignIn();
           navigate("/");
+          window.location.reload();
         }
       });
     };

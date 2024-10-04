@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import { AuthActionsEnum } from "../helper/constant";
 import { useClickOutSide } from "../hooks/useClickOutSide";
-import { useScrollToTop } from "../hooks/useScrollToTop";
 import { postSignOut } from "../service/authService";
 import Button from "./Button";
 import { Icon, Image } from "./common";
-import { AuthActionsEnum } from "../helper/constant";
+
 // lay ra phan payload va decode
 // const parseJwt = (token) => {
 //   try {
@@ -25,17 +25,18 @@ const UserDropdown = () => {
       if (resJson) {
         localStorage.removeItem("access_token");
         localStorage.removeItem("user");
-        navigate("/");
         dispatch({
           type: AuthActionsEnum.LOGOUT,
           payload: resJson.data,
         });
+        navigate("/");
         window.location.reload();
       }
     } catch (error) {
       console.log(error);
     }
   };
+  
   return (
     <div className="absolute sm:min-w-80 min-w-60 top-full z-50 right-4 bg-gray-100 shadow-small rounded-medium">
       <div className="">
@@ -95,7 +96,6 @@ const Drawer: React.FC = () => {
   const handleClickAvatar = () => {
     setUserDropdownActive(!userDropdownActive);
   };
-  useScrollToTop();
   useClickOutSide(refAvatar, () => {
     setUserDropdownActive(false);
   });
@@ -218,7 +218,7 @@ const Drawer: React.FC = () => {
                 </NavLink>
               </div>
               <div className="mb-small">
-                <NavLink to={`/flashcards/set`}>
+                <NavLink to={`/flashcards/sets`}>
                   {({ isActive }) => (
                     <div
                       className={`h-10 select-none relative flex items-center pl-xsmall pr-small text-twilight-500 rounded-medium ${

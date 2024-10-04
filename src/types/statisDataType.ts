@@ -36,3 +36,8 @@ export interface IMenu {
 }
 
 export type FeatureReviewProps = IListIntroduction;
+
+export interface IAvatarDefault {
+  id: number;
+  urlImage: string;
+}

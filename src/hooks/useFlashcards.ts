@@ -42,6 +42,7 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
     if (!locationState) {
       if (pathname === "/flashcards/copy") {
         handleToast("Cannot find flashcards to copy", "error");
+        navigate("/flashcards/sets")
         return;
       } else if (
         !parseInt(params || "") &&
@@ -49,7 +50,10 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
       ) {
         handleToast("Cannot find flashcards to edit", "error");
         return;
-      } else if (pathname === "/flashcards/set") {
+      } else if (
+        pathname === "/flashcards/sets" ||
+        pathname.includes("/flashcards")
+      ) {
         return;
       }
     }
@@ -83,12 +87,20 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
         if (resJsonSentences) {
           const data = await resJsonSentences.data;
           const newListSentences: Sentence[] = data.map((item: ISentence) => {
-            return {
-              id: item.id,
-              isEditing: false,
-              term: item.term,
-              definition: item.definition,
-            };
+            return pathname.includes("/flashcards/edit")
+              ? {
+                  id: item.id,
+                  isEditing: false,
+                  term: item.term,
+                  definition: item.definition,
+                }
+              : pathname.includes("/flashcards/copy")
+              ? {
+                  isEditing: false,
+                  term: item.term,
+                  definition: item.definition,
+                }
+              : {};
           });
           setListSentences([...newListSentences]);
         }
@@ -284,7 +296,6 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
 
     createNewCourse(postCreateCourse);
   };
-  console.log(listSentences);
 
   const handleClickUpdate = () => {
     if (!informationFlashcards.title.trim()) {

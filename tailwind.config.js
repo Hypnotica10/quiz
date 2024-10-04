@@ -1,5 +1,7 @@
 const { opacity } = require('@cloudinary/url-gen/actions/adjust');
 const { fadeIn } = require('@cloudinary/url-gen/actions/effect');
+const { background } = require('@cloudinary/url-gen/qualifiers/focusOn');
+const { none } = require('@cloudinary/url-gen/qualifiers/progressive');
 const { transform } = require('typescript');
 
 /** @type {import('tailwindcss').Config} */
@@ -143,6 +145,7 @@ module.exports = {
         30: '30rem',
         35: '35rem',
         64: '64rem',
+        45: '45rem',
         90: '90rem'
       },
       height: {
@@ -170,7 +173,11 @@ module.exports = {
         'fadeIn': "fadeIn 250ms linear 1",
         'fadeOut': "fadeOut 250ms linear 1 forwards",
         'fadeInRight': "fadeInRight 200ms linear 1",
-        'fadeInLeft': "fadeInLeft 200ms linear 1"
+        'fadeInLeft': "fadeInLeft 200ms linear 1",
+        'fadeInDown': "fadeInDown 100ms linear 1",
+        'fadeOutUp': "fadeOutUp 200ms linear 1 forwards",
+        'fadeInOverlay': "fadeInOverlay 200ms linear 1 forwards",
+        'fadeOutOverlay': "fadeOutOverlay 200ms linear 1",
       },
       keyframes: {
         zoomIn: {
@@ -217,6 +224,42 @@ module.exports = {
           },
           '100%': {
             transform: 'rotateX(0) rotateY(0) translateX(0)'
+          }
+        },
+        fadeInDown: {
+          '0%': {
+            opacity: 0,
+            transform: 'translateY(-150%)'
+          },
+          '100%': {
+            opacity: 1,
+            transform: 'translateY(0)'
+          }
+        },
+        fadeOutUp: {
+          '0%': {
+            opacity: 1,
+            transform: 'translateY(0)'
+          },
+          '100%': {
+            opacity: 0,
+            transform: 'translateY(-150%)'
+          }
+        },
+        fadeInOverlay: {
+          '0%': {
+            background: none
+          },
+          '100%': {
+            background: "rgba(0, 0, 0, 0.5)"
+          }
+        },
+        fadeOutOverlay: {
+          '0%': {
+            background: "rgba(0, 0, 0, 0.5)"
+          },
+          '100%': {
+            background: none
           }
         },
       },

@@ -2,20 +2,24 @@ import { Route, Routes } from "react-router-dom";
 import { Drawer, Layout, PrivateRoute, NotFound } from "../components";
 import { useAuthContext } from "../context/AuthContext";
 import {
-  CopyFlashcards,
+  CopyCourse,
   Course,
-  EditFlashcard,
+  EditCourse,
   Flashcards,
   Home,
   Profile,
   SelfCourse,
-  SetFlashCards,
+  SetCourse,
   Test,
+  YourLibrary,
 } from "../screen";
 import React from "react";
+import { useScrollToTop } from "../hooks/useScrollToTop";
 
 const AppRoutes: React.FC = () => {
   const { state } = useAuthContext();
+  useScrollToTop();
+
   return (
     <>
       {state.authenticated ? (
@@ -26,18 +30,18 @@ const AppRoutes: React.FC = () => {
             {/*not found route*/}
             <Route path="*" element={<NotFound />} />
 
-            <Route path="/course">
-              <Route path=":courseId/:courseTitle" element={<SelfCourse />} />
-            </Route>
+            <Route
+              path="/course/:courseId/:courseTitle"
+              element={<SelfCourse />}
+            />
 
-            <Route path="/flashcards">
-              <Route path="set" element={<SetFlashCards />} />
-              <Route path="copy" element={<CopyFlashcards />} />
-              <Route path="edit/:courseId" element={<EditFlashcard />} />
-            </Route>
+            <Route path="/flashcards/sets" element={<SetCourse />} />
+            <Route path="/flashcards/copy" element={<CopyCourse />} />
+            <Route path="/flashcards/edit/:courseId" element={<EditCourse />} />
 
-            <Route path="/user">
-              <Route path=":userId" element={<Profile />} />
+            <Route path="/user/:userId">
+              <Route path="" element={<Profile />} />
+              <Route path="sets" element={<YourLibrary />} />
             </Route>
           </Route>
         </Routes>
@@ -64,7 +68,7 @@ const AppRoutes: React.FC = () => {
             <Route path="/social-science" element={<PrivateRoute />} />
             <Route path="/other" element={<PrivateRoute />} />
             <Route path="/flashcards/set" element={<PrivateRoute />} />
-
+            <Route path="/user/:userId/sets" element={<PrivateRoute />} />
             {/* not found route */}
             <Route path="*" element={<NotFound />} />
           </Route>

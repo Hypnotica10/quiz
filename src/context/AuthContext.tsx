@@ -6,6 +6,7 @@ import {
   useReducer,
 } from "react";
 import { AuthActionsEnum } from "../helper/constant";
+import { IInformationUser, UserType } from "../types/user";
 
 type Props = {
   children?: ReactNode;
@@ -37,12 +38,7 @@ type ActionMap<M> = {
 
 interface IInitialStateType {
   authenticated: boolean;
-  user: {
-    id: number | null;
-    username: string;
-    name: string;
-    avatar: string;
-  };
+  user: UserType;
 }
 
 const initialState: IInitialStateType = {
@@ -66,13 +62,14 @@ const initialState: IInitialStateType = {
 type AuthPayload = {
   [AuthActionsEnum.LOGIN]: IInitialStateType;
   [AuthActionsEnum.LOGOUT]: IInitialStateType;
+  [AuthActionsEnum.EDIT]: IInformationUser;
 };
 
 export type AuthActions = ActionMap<AuthPayload>[keyof ActionMap<AuthPayload>];
 
 const authReducer = (state: IInitialStateType, action: AuthActions) => {
   switch (action.type) {
-    case AuthActionsEnum.LOGIN:
+    case AuthActionsEnum.LOGIN: {
       return {
         ...state,
         authenticated: !!localStorage.getItem("access_token"),
@@ -83,15 +80,27 @@ const authReducer = (state: IInitialStateType, action: AuthActions) => {
           avatar: action?.payload?.user?.avatar,
         },
       };
+    }
     case AuthActionsEnum.LOGOUT:
       return {
         ...state,
         authenticated: false,
         user: {
-          id: null,
+          id: undefined,
           username: "",
           name: "",
           avatar: "",
+        },
+      };
+    case AuthActionsEnum.EDIT:
+      return {
+        ...state,
+        authenticated: !!localStorage.getItem("access_token"),
+        user: {
+          id: action?.payload?.id,
+          username: action?.payload?.username,
+          name: action?.payload?.name,
+          avatar: action?.payload?.avatar,
         },
       };
     default:
@@ -117,7 +126,7 @@ export const AuthProvider = ({ children }: Props) => {
   // );
   const [state, dispatch] = useReducer(authReducer, initialState);
   console.log(state);
-
+  
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       {children}
