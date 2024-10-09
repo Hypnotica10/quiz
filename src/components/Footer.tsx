@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { IFooterData } from "../types/statisDataType";
+import { IFooterData } from "../types/staticDataType";
 import { footerData } from "../helper/staticData";
 import React from "react";
 

@@ -64,4 +64,20 @@
         backface-visibility: hidden;
         transform: rotateX(-180deg);
     }
+
+    .tooltip-container {
+        @apply absolute capitalize text-xs rounded bg-gray-900 p-xsmall text-gray-100 font-semibold;
+    }
+
+    .tooltip-container.bottom {
+        top: calc(100% + 12px);
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .tooltip-container.right {
+        top: 50%;
+        left: calc(100% + 12px);
+        transform: translateY(-50%);
+    }
 }

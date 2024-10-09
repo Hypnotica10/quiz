@@ -1,11 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
-import { AuthActionsEnum } from "../helper/constant";
+import { AuthActionsEnum, TooltipPositionEnum } from "../helper/constant";
+import { drawerList } from "../helper/staticData";
 import { useClickOutSide } from "../hooks/useClickOutSide";
 import { postSignOut } from "../service/authService";
+import { IDrawerListItem } from "../types/staticDataType";
 import Button from "./Button";
 import { Icon, Image } from "./common";
+import Tooltip from "./Tooltip";
 
 // lay ra phan payload va decode
 // const parseJwt = (token) => {
@@ -36,7 +39,7 @@ const UserDropdown = () => {
       console.log(error);
     }
   };
-  
+
   return (
     <div className="absolute sm:min-w-80 min-w-60 top-full z-50 right-4 bg-gray-100 shadow-small rounded-medium">
       <div className="">
@@ -81,6 +84,54 @@ const UserDropdown = () => {
           </div>
         </div>
       </div>
+    </div>
+  );
+};
+
+type ItemProps = {
+  asideActive: boolean;
+  itemInformation: IDrawerListItem;
+};
+
+const Item: React.FC<ItemProps> = (props) => {
+  const { asideActive, itemInformation } = props;
+  const linkRef = useRef<HTMLAnchorElement>(null);
+  const { state } = useAuthContext();
+  return (
+    <div className="mb-small relative">
+      {!asideActive && (
+        <Tooltip direction={TooltipPositionEnum.RIGHT} elementRef={linkRef}>
+          <span>{itemInformation.tooltipText}</span>
+        </Tooltip>
+      )}
+      <NavLink
+        to={
+          itemInformation.to
+            ? itemInformation.to
+            : `/user/${state?.user?.id}/sets`
+        }
+        ref={linkRef}
+      >
+        {({ isActive }) => (
+          <div
+            className={`h-10 select-none relative flex items-center pl-xsmall pr-small text-twilight-500 rounded-medium ${
+              isActive ? "bg-twilight-500 bg-opacity-10" : "bg-gray-100"
+            }`}
+          >
+            <div className="lg:w-10 lg:h-10"></div>
+            <div className="p-xsmall lg:absolute w-10 h-10 mr-small lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
+              <Icon iconName={itemInformation.iconName} />
+            </div>
+            <span
+              className={`${
+                asideActive ? "opacity-100 visible" : "opacity-0 invisible"
+              } font-medium text-small transition-all`}
+            >
+              {itemInformation.iconName}
+            </span>
+          </div>
+        )}
+      </NavLink>
     </div>
   );
 };
@@ -162,88 +213,15 @@ const Drawer: React.FC = () => {
                 </Link>
               </div>
             </div>
-            <div className="flex flex-col lg:pr-0 pr-medium">
-              <div className="my-small">
-                <NavLink to="/">
-                  {({ isActive }) => (
-                    <div
-                      className={`h-10 select-none relative flex items-center pl-xsmall pr-small text-twilight-500 rounded-medium ${
-                        isActive
-                          ? "bg-twilight-500 bg-opacity-10"
-                          : "bg-gray-100"
-                      }`}
-                    >
-                      <div className="lg:w-10 lg:h-10"></div>
-                      <div className="p-xsmall lg:absolute w-10 h-10 mr-small lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
-                        <Icon iconName="home" />
-                      </div>
-                      <span
-                        className={`${
-                          asideActive
-                            ? "opacity-100 visible"
-                            : "opacity-0 invisible"
-                        } font-medium text-small transition-all`}
-                      >
-                        Home
-                      </span>
-                    </div>
-                  )}
-                </NavLink>
-              </div>
-              <div className="mb-small">
-                <NavLink to={`/user/${state?.user?.id}/sets`}>
-                  {({ isActive }) => (
-                    <div
-                      className={`h-10 select-none relative flex items-center pl-xsmall pr-small text-twilight-500 rounded-medium ${
-                        isActive
-                          ? "bg-twilight-500 bg-opacity-10"
-                          : "bg-gray-100"
-                      }`}
-                    >
-                      <div className="lg:w-10 lg:h-10"></div>
-                      <div className="p-xsmall lg:absolute w-10 h-10 mr-small lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
-                        <Icon iconName="library" />
-                      </div>
-                      <span
-                        className={`${
-                          asideActive
-                            ? "lg:opacity-100 lg:visible"
-                            : "lg:opacity-0 lg:invisible"
-                        } font-medium text-small transition-all`}
-                      >
-                        Your library
-                      </span>
-                    </div>
-                  )}
-                </NavLink>
-              </div>
-              <div className="mb-small">
-                <NavLink to={`/flashcards/sets`}>
-                  {({ isActive }) => (
-                    <div
-                      className={`h-10 select-none relative flex items-center pl-xsmall pr-small text-twilight-500 rounded-medium ${
-                        isActive
-                          ? "bg-twilight-500 bg-opacity-10"
-                          : "bg-gray-100"
-                      }`}
-                    >
-                      <div className="lg:w-10 lg:h-10"></div>
-                      <div className="p-xsmall lg:absolute w-10 h-10 mr-small lg:top-1/2 lg:left-0 lg:-translate-y-1/2">
-                        <Icon iconName="setflashcards" />
-                      </div>
-                      <span
-                        className={`${
-                          asideActive
-                            ? "lg:opacity-100 lg:visible"
-                            : "lg:opacity-0 lg:invisible w-0"
-                        } font-medium text-small transition-all`}
-                      >
-                        Flashcards
-                      </span>
-                    </div>
-                  )}
-                </NavLink>
-              </div>
+            <div className="flex flex-col lg:pr-0 pr-medium pt-small">
+              {drawerList &&
+                drawerList.map((item: IDrawerListItem, index: number) => (
+                  <Item
+                    key={index}
+                    asideActive={asideActive}
+                    itemInformation={item}
+                  />
+                ))}
             </div>
           </div>
         </aside>

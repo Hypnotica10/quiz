@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { menu } from "../helper/staticData";
 import { useClickOutSide } from "../hooks/useClickOutSide";
-import { IMenu } from "../types/statisDataType";
+import { IMenu } from "../types/staticDataType";
 import { ISubject } from "../types/subject";
 import { Icon } from "./common";
 

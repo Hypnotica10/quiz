@@ -1,5 +1,5 @@
 import React from "react";
-import { FeatureReviewProps, IIntroductionItem } from "../types/statisDataType";
+import { FeatureReviewProps, IIntroductionItem } from "../types/staticDataType";
 import { Image } from "./common";
 
 const FeatureReviewItem = ({

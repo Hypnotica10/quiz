@@ -7,10 +7,12 @@ import {
   InputHTMLAttributes,
   MouseEvent,
   MouseEventHandler,
-  ReactNode
+  ReactNode,
+  RefObject,
 } from "react";
 import { IPostCourse } from "./course";
 import { ISentence } from "./sentence";
+import { TooltipPositionEnum } from "../helper/constant";
 
 // default HTML props for an input
 type DefaultTextInputProps = DetailedHTMLProps<
@@ -115,4 +117,10 @@ export type OverlayProps = {
   children: ReactNode;
   handleOnClose: MouseEventHandler<HTMLDivElement>;
   isOverlayActive: boolean;
+};
+
+export type TooltipProps = {
+  elementRef: RefObject<HTMLElement>;
+  children: React.ReactNode;
+  direction: TooltipPositionEnum;
 };

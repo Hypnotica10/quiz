@@ -41,3 +41,9 @@ export interface IAvatarDefault {
   id: number;
   urlImage: string;
 }
+
+export interface IDrawerListItem {
+  tooltipText: string;
+  iconName: string;
+  to: string;
+}

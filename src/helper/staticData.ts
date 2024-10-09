@@ -1,9 +1,10 @@
 import {
   IAvatarDefault,
+  IDrawerListItem,
   IFooterData,
   IIntroductionItem,
   IMenu,
-} from "../types/statisDataType";
+} from "../types/staticDataType";
 
 export const listFeatureHomeReview: IIntroductionItem[] = [
   {
@@ -303,5 +304,23 @@ export const listAvatarDefault: IAvatarDefault[] = [
   {
     id: 20,
     urlImage: "avatar_20.jpg",
+  },
+];
+
+export const drawerList: IDrawerListItem[] = [
+  {
+    tooltipText: "home",
+    iconName: "home",
+    to: "/",
+  },
+  {
+    tooltipText: "library",
+    iconName: "library",
+    to: "",
+  },
+  {
+    tooltipText: "flashcards",
+    iconName: "setflashcards",
+    to: "/flashcards/sets",
   },
 ];

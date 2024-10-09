@@ -12,7 +12,7 @@ import { AuthActionsEnum } from "../helper/constant";
 import { handleToast } from "../helper/handleToastify";
 import { listAvatarDefault } from "../helper/staticData";
 import { getUserById, updateUser } from "../service/userService";
-import { IAvatarDefault } from "../types/statisDataType";
+import { IAvatarDefault } from "../types/staticDataType";
 import { IInformationUser } from "../types/user";
 
 const MyProfile: React.FC = () => {
@@ -150,6 +150,8 @@ const MyProfile: React.FC = () => {
           informationUserUpdate
         );
         const data = await resJson?.data;
+        console.log(data);
+
         if (data) {
           const userData = {
             id: data?.id,
@@ -163,6 +165,7 @@ const MyProfile: React.FC = () => {
             payload: data,
           });
           handleToast("Update success", "success");
+          // setInformationUser({});
         }
       } catch (error) {
         console.log(error);

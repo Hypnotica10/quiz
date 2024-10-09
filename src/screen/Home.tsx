@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Image, Button, FeatureReview } from "../components";
 import { listFeatureHomeReview, listIntroduction } from "../helper/staticData";
 import useWindowResize from "../hooks/useWindowResize";
-import { IIntroductionItem } from "../types/statisDataType";
+import { IIntroductionItem } from "../types/staticDataType";
 
 const IntroductionItem = (introductionItem: IIntroductionItem) => {
   return (

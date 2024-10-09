@@ -22,7 +22,7 @@ const validationSchema = Yup.object().shape({
     .trim()
     .min(3, "Too short")
     .max(20, "Too long"),
-  password: Yup.string().required("Required").trim().min(8).max(30),
+  password: Yup.string().required("Required").trim().max(30),
 });
 
 const SignIn: React.FC = () => {

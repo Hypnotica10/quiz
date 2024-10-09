@@ -6,11 +6,13 @@ import {
   ConfettiAnimation,
   Icon,
   Image,
+  Tooltip,
 } from "../components";
 import { getCourseById } from "../service/courseService";
 import { getSentencesByCourseId } from "../service/sentencesService";
 import { ICourse } from "../types/course";
 import { ISentence } from "../types/sentence";
+import { TooltipPositionEnum } from "../helper/constant";
 
 const SelfCourse: React.FC = () => {
   const { courseId } = useParams();
@@ -22,6 +24,7 @@ const SelfCourse: React.FC = () => {
   const [widthProgress, setWidthProgress] = useState<number>(0);
   const [isComplete, setIscomplete] = useState<boolean>(false);
   const flashcardsCompleteRef = useRef<HTMLDivElement>(null);
+  const linkRef = useRef<HTMLAnchorElement>(null);
 
   const handleClickRestart = (): void => {
     setActiveSentence(0);
@@ -309,20 +312,41 @@ const SelfCourse: React.FC = () => {
             </div>
             {course?.user?.id ===
             JSON.parse(localStorage.getItem("user") || "")?.id ? (
-              <Link
-                to={`/flashcards/edit/${course?.id}`}
-                state={{ courseId: course?.id }}
-              >
-                <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
-                  <Icon iconName="edit" />
-                </div>
-              </Link>
+              <div className="relative">
+                <Tooltip
+                  direction={TooltipPositionEnum.BOTTOM}
+                  elementRef={linkRef}
+                >
+                  <span>edit</span>
+                </Tooltip>
+                <Link
+                  ref={linkRef}
+                  to={`/flashcards/edit/${course?.id}`}
+                  state={{ courseId: course?.id }}
+                >
+                  <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
+                    <Icon iconName="edit" />
+                  </div>
+                </Link>
+              </div>
             ) : (
-              <Link to="/flashcards/copy" state={{ courseId: course?.id }}>
-                <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
-                  <Icon iconName="copy" />
-                </div>
-              </Link>
+              <div className="relative">
+                <Tooltip
+                  direction={TooltipPositionEnum.BOTTOM}
+                  elementRef={linkRef}
+                >
+                  <span>copy</span>
+                </Tooltip>
+                <Link
+                  ref={linkRef}
+                  to="/flashcards/copy"
+                  state={{ courseId: course?.id }}
+                >
+                  <div className="w-10 h-10 p-xsmall border-2 border-gray-400 rounded-small cursor-pointer active:bg-gray-400 text-gray-600">
+                    <Icon iconName="copy" />
+                  </div>
+                </Link>
+              </div>
             )}
           </div>
           <div className="flex flex-col gap-small">

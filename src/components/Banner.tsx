@@ -1,5 +1,5 @@
 import React from "react";
-import { BannerProps, IIntroductionItem } from "../types/statisDataType";
+import { BannerProps, IIntroductionItem } from "../types/staticDataType";
 import { Image } from "./common";
 
 const Banner: React.FC<BannerProps> = (props) => {

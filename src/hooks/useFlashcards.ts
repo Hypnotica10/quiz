@@ -349,6 +349,7 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
           accessToken,
           body
         );
+        
         if (resJson) {
           const data = await resJson?.data;
           navigate(

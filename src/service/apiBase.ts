@@ -51,7 +51,9 @@ export const handleResponse = async ({
           message = resJson.error || "Không tồn tại";
           break;
         default:
-          message = resJson.error || "Hệ thống lỗi";
+          message = Array.isArray(resJson.error)
+            ? resJson.error[0]
+            : resJson.error || "Hệ thống lỗi";
           break;
       }
     } else {
