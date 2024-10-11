@@ -2,7 +2,7 @@
 import { IPostCourse } from "../types/course";
 import { handleError, handleResponse, urlRequestFull } from "./apiBase";
 
-export const getRandomNineCourse = async <T = any>(
+export const getCourseBySubjectId = async <T = any>(
   path: string,
   accessToken: string
 ): Promise<T> => {

@@ -15,3 +15,4 @@ export { default as SentencePreview } from "./SentencePreview";
 export { default as Overlay } from "./Overlay";
 export { default as Tooltip } from "./Tooltip";
 export { default as TabScroll } from "./TabScroll";
+export { default as Pagination } from "./Pagination";

@@ -130,3 +130,22 @@ export type TestCourseProps = {
   courseId: number;
   countSentence: number;
 };
+
+export type TabScrollProps = {
+  getSubjectActive: (id: number) => void;
+};
+
+export type InformationPage = {
+  coursePerPage: number;
+  totalCourse: number;
+  pageNumber: number;
+  totalPage: number;
+};
+
+export type PaginationProps = {
+  currentPage: number;
+  informationPage: InformationPage;
+  handleSelectPage: (e: MouseEvent<HTMLButtonElement>, num: number) => void;
+  handlePreviousPage: MouseEventHandler<HTMLButtonElement>;
+  handleNextPage: MouseEventHandler<HTMLButtonElement>;
+};
