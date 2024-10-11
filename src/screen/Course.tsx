@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Image } from "../components";
+import { Image, TabScroll } from "../components";
 import { generateSlug } from "../helper/formatString";
 import { getRandomNineCourse } from "../service/courseService";
 import { ICourse } from "../types/course";
@@ -33,6 +33,7 @@ const Course: React.FC = () => {
           <span className="text-gray-800 font-semibold text-medium pointer-events-none">
             Flashcard sets
           </span>
+          <TabScroll />
           <div className="grid grid-cols-3 gap-small">
             {nineCourse &&
               nineCourse.map((course: ICourse) => (
