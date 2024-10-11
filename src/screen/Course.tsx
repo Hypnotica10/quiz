@@ -59,7 +59,7 @@ const Course: React.FC = () => {
     const pageQuery = currentPage;
     if (pageQuery === informationPage.totalPage) {
       return;
-    }  
+    }
     getData(accessToken, subject, pageQuery).then((data) => {
       console.log(data);
 
@@ -174,16 +174,15 @@ const Course: React.FC = () => {
                 </div>
               ))}
           </div>
-          {informationPage &&
-            informationPage.totalPage > 1 && (
-              <Pagination
-                currentPage={currentPage}
-                informationPage={informationPage}
-                handleNextPage={handleNextPage}
-                handlePreviousPage={handlePreviousPage}
-                handleSelectPage={handleSelectPage}
-              />
-            )}
+          {informationPage && informationPage.totalPage > 1 && (
+            <Pagination
+              currentPage={currentPage}
+              informationPage={informationPage}
+              handleNextPage={handleNextPage}
+              handlePreviousPage={handlePreviousPage}
+              handleSelectPage={handleSelectPage}
+            />
+          )}
         </div>
       </div>
     </div>
