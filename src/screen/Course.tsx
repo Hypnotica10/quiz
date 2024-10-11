@@ -175,7 +175,7 @@ const Course: React.FC = () => {
               ))}
           </div>
           {informationPage &&
-            informationPage.totalCourse > informationPage.coursePerPage && (
+            informationPage.totalPage > 1 && (
               <Pagination
                 currentPage={currentPage}
                 informationPage={informationPage}
