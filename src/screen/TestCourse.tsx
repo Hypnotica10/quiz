@@ -38,6 +38,7 @@ type ResultTestProps = {
   questionNumber: number;
   listAnswerFromUser: ListAnswerFromUser;
   informationQuizTest: IQuizTestResponse;
+  timer: number;
   handleClickCloseTest: MouseEventHandler;
   handleRetest: MouseEventHandler;
 };
@@ -52,7 +53,6 @@ const SentenceInTest: React.FC<SentenceInTestProps> = (props) => {
     correctAnswer,
     handleChoice,
   } = props;
-  console.log(listAnswerFromUser);
 
   return (
     <div className="">
@@ -135,9 +135,23 @@ const ResultTest: React.FC<ResultTestProps> = (props) => {
     listAnswerFromUser,
     questionNumber,
     informationQuizTest,
+    timer,
     handleClickCloseTest,
     handleRetest,
   } = props;
+
+  const convertTimer = (timer: number) => {
+    if (timer < 60) {
+      return `${timer} secs`;
+    } else if (timer > 60) {
+      if (timer % 60 === 0) {
+        return `${timer / 60} mins`;
+      } else {
+        return `${Math.floor(timer / 60)} mins ${timer % 60} secs`;
+      }
+    }
+  };
+
   return (
     <div className="">
       <div className="flex flex-col gap-medium">
@@ -145,7 +159,7 @@ const ResultTest: React.FC<ResultTestProps> = (props) => {
         <div className="flex">
           <div className="flex flex-col gap-medium flex-grow">
             <div className="font-bold text-medium text-gray-600">
-              Your time: 1 min
+              Your time: {convertTimer(timer)}
             </div>
             <div className="flex gap-medium">
               <CompleteAnimation />
@@ -238,6 +252,8 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
   const sentenceChoiceRef = useRef<number>(0);
   const overlayRef = useRef<HTMLDivElement>(null);
   const screenTestRef = useRef<HTMLDivElement>(null);
+  const timer = useRef<number>(0);
+  const timeInterval = useRef<ReturnType<typeof setInterval>>();
 
   const handleRetest = () => {
     sentenceChoiceRef.current = 0;
@@ -314,11 +330,11 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
   const handleOnChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     if (parseInt(e.target.value) > countSentence) {
       e.target.value = countSentence.toString();
-    } else if (parseInt(e.target.value) < 0) {
+    } else if (parseInt(e.target.value) <= 0) {
       e.target.value = "1";
     }
     setQuestionNumber(
-      isNaN(parseInt(e.target.value)) ? 0 : parseInt(e.target.value)
+      isNaN(parseInt(e.target.value)) ? 1 : parseInt(e.target.value)
     );
   };
 
@@ -345,6 +361,7 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
     setResultTest(newResultTest);
     setSubmit(true);
     screenTestRef.current?.scrollTo(0, 0);
+    clearInterval(timeInterval.current);
   };
 
   const handleClickGetQuizTest = async () => {
@@ -381,6 +398,9 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
     setTimeout(() => {
       setIsOverlayActive(false);
     }, 200);
+    timeInterval.current = setInterval(() => {
+      timer.current += 1;
+    }, 1000);
   };
 
   useEffect(() => {
@@ -448,7 +468,7 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
                   <span>{informationQuizTest?.questionNumber}</span>
                 </div>
                 <div className="font-semibold text-gray-600 text-base">
-                  <span>159 CÂU ÔN TẬP</span>
+                  <span>{informationQuizTest.title}</span>
                 </div>
               </div>
               <div className="flex gap-small">
@@ -475,6 +495,7 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
           <div className="mt-large w-full max-w-52.5 px-large mx-auto">
             {submit ? (
               <ResultTest
+                timer={timer.current}
                 handleRetest={handleRetest}
                 handleClickCloseTest={handleClickCloseTest}
                 informationQuizTest={informationQuizTest}
@@ -538,7 +559,7 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
               <div className="flex items-center justify-between my-small">
                 <div className="w-1/2 flex flex-col">
                   <p className="font-semibold text-medium truncate">
-                    159 CÂU ÔN TẬP
+                    {informationQuizTest.title}
                   </p>
                   <p className="font-bold text-large">Set up your test</p>
                 </div>

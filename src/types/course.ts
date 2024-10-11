@@ -33,6 +33,7 @@ export type SentenceTest = {
 
 export interface IQuizTestResponse {
   questionNumber: number;
+  title: string;
   listSentence: SentenceTest[];
-  solution: {[K: string]: string};
+  solution: { [K: string]: string };
 }

@@ -121,7 +121,7 @@ const SelfCourse: React.FC = () => {
                     <div className="w-8 h-8 p-xsmall">
                       <Icon iconName="flashcards" />
                     </div>
-                    <span className="">Flashcards</span>
+                    <span className="">Learn</span>
                   </Button>
                 </div>
                 <div className="w-40 shadow-small rounded-medium overflow-hidden relative hover:before:bg-twilight-400 before:absolute before:transition-all before:w-full before:h-0.5 before:bg-gray-100 before:bottom-0">
