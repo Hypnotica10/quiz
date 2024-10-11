@@ -59,7 +59,7 @@ const Course: React.FC = () => {
     const pageQuery = currentPage;
     if (pageQuery === informationPage.totalPage) {
       return;
-    }
+    }  
     getData(accessToken, subject, pageQuery).then((data) => {
       console.log(data);
 
