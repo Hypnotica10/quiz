@@ -42,7 +42,7 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
     if (!locationState) {
       if (pathname === "/flashcards/copy") {
         handleToast("Cannot find flashcards to copy", "error");
-        navigate("/flashcards/sets")
+        navigate("/flashcards/sets");
         return;
       } else if (
         !parseInt(params || "") &&
@@ -185,11 +185,11 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
     if (error.term || error.definition) {
       return;
     }
-    const newSentences = [...listSentences, sentence];
+    const newSentences = [...listSentences, sentence ];
     setListSentences(newSentences);
     setSentence(initialValues.sentence);
   };
-
+  
   // handle click delete button
   const handleClickDelete = (
     _e: MouseEvent<HTMLDivElement>,
@@ -349,7 +349,7 @@ export const useFlashcards = (initialValues: InitialValuesUseFlashcards) => {
           accessToken,
           body
         );
-        
+
         if (resJson) {
           const data = await resJson?.data;
           navigate(

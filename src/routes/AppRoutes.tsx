@@ -10,7 +10,7 @@ import {
   Profile,
   SelfCourse,
   SetCourse,
-  Test,
+  TestPreview,
   YourLibrary,
 } from "../screen";
 import React from "react";
@@ -51,7 +51,7 @@ const AppRoutes: React.FC = () => {
             {/* public route */}
             <Route path="/" element={<Home />} />
             <Route path="/flashcards" element={<Flashcards />} />
-            <Route path="/test" element={<Test />} />
+            <Route path="/test" element={<TestPreview />} />
 
             {/* private route */}
             {/* <Route element={<PrivateRoute />}>

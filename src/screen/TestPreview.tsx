@@ -5,7 +5,7 @@ import {
   listIntroductionTest,
 } from "../helper/staticData";
 
-const Test: React.FC = () => {
+const TestPreview: React.FC = () => {
   return (
     <>
       <Banner
@@ -22,4 +22,4 @@ const Test: React.FC = () => {
   );
 };
 
-export default Test;
+export default TestPreview;

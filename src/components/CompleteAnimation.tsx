@@ -1,6 +1,7 @@
 import React from "react";
 
 const CompleteAnimation: React.FC = () => {
+  
   return (
     <div className="">
       <svg

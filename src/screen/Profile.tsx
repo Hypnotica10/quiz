@@ -133,6 +133,10 @@ const MyProfile: React.FC = () => {
   };
 
   const handleClickSaveChanges = () => {
+    if (!informationUser.password) {
+      handleToast("Enter your password", "error");
+      return;
+    }
     const getData = async () => {
       const accessToken = localStorage.getItem("access_token") || "";
       const informationUserUpdate: IInformationUser = {
@@ -304,7 +308,7 @@ const MyProfile: React.FC = () => {
           isOverlayActive={isOverlayActive}
           handleOnClose={handleOnCloseOverlay}
         >
-          <div className="modal-container max-w-45 w-full my-10">
+          <div className="modal-container max-w-45 w-full my-10 mx-auto">
             <div
               className={`${
                 isModalActive ? "animate-fadeInDown" : "animate-fadeOutUp"

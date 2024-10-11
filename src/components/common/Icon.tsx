@@ -20,12 +20,14 @@ import {
   Menu,
   MiniLogo,
   Other,
+  QuizTestDone,
   Science,
   SetFlashcards,
   Settings,
   SocialScience,
   Test,
   Trash,
+  True
 } from "./svg";
 
 const Icon: React.FC<IconProps> = (props) => {
@@ -105,6 +107,12 @@ const Icon: React.FC<IconProps> = (props) => {
     }
     case "drag": {
       return <Drag />;
+    }
+    case "quiztestdone": {
+      return <QuizTestDone />;
+    }
+    case "true": {
+      return <True />;
     }
   }
 };

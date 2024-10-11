@@ -23,3 +23,5 @@ export { default as Edit } from "./Edit";
 export { default as Confetti } from "./Confetti";
 export { default as Trash } from "./Trash";
 export { default as Drag } from "./Drag";
+export { default as QuizTestDone } from "./QuizTestDone";
+export { default as True } from "./True";

@@ -53,7 +53,7 @@ export const createCourse = async <T = any>(
 export const updateCourseById = async <T = any>(
   path: string,
   accessToken: string,
-  body: IPostCourse,
+  body: IPostCourse
 ): Promise<T> => {
   const response: Response | null = await fetch(urlRequestFull(path), {
     method: "PUT",
@@ -69,7 +69,7 @@ export const updateCourseById = async <T = any>(
 
 export const getCourseByUserId = async <T = any>(
   path: string,
-  accessToken: string,
+  accessToken: string
 ): Promise<T> => {
   const response: Response | null = await fetch(urlRequestFull(path), {
     method: "GET",
@@ -84,7 +84,7 @@ export const getCourseByUserId = async <T = any>(
 
 export const deleteCourseByCourseId = async <T = any>(
   path: string,
-  accessToken: string,
+  accessToken: string
 ): Promise<T> => {
   const response: Response | null = await fetch(urlRequestFull(path), {
     method: "DELETE",
@@ -97,3 +97,17 @@ export const deleteCourseByCourseId = async <T = any>(
   return handleResponse({ response });
 };
 
+export const getQuizTest = async <T = any>(
+  path: string,
+  accessToken: string,
+): Promise<T> => {
+  const response: Response | null = await fetch(urlRequestFull(path), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + accessToken,
+    },
+    credentials: "include",
+  }).catch((error) => handleError(error));
+  return handleResponse({ response });
+};

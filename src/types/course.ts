@@ -20,3 +20,19 @@ export interface IPostCourse {
   userId?: string;
   sentences?: ISentence[];
 }
+
+export interface IPostQuizTest {
+  courseId: number;
+  questionNumber: number;
+}
+
+export type SentenceTest = {
+  question: string;
+  answer: string[];
+};
+
+export interface IQuizTestResponse {
+  questionNumber: number;
+  listSentence: SentenceTest[];
+  solution: {[K: string]: string};
+}

@@ -74,7 +74,7 @@ const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
             <div className="">
               <Button
                 handleClick={handleClickAdd}
-                buttonClass="text-gray-100 min-w-20 bg-success-400 py-xsmall font-semibold capitalize cursor-pointer flex items-center justify-center transition-all bg-none outline-none border-2 rounded-medium border-transparent"
+                buttonClass="text-gray-100 min-w-20 bg-twilight-500 hover:bg-twilight-600 transition-all py-xsmall font-semibold capitalize cursor-pointer flex items-center justify-center transition-all bg-none outline-none border-2 rounded-medium border-transparent"
                 type="button"
               >
                 Add
@@ -83,7 +83,7 @@ const FieldAddSentence: React.FC<FieldAddSentenceProps> = (props) => {
             <div className="">
               <Button
                 handleClick={handleClickReset}
-                buttonClass="text-gray-100 min-w-20 bg-error-200 py-xsmall font-semibold capitalize cursor-pointer flex items-center justify-center transition-all bg-none outline-none border-2 rounded-medium border-transparent"
+                buttonClass="text-gray-600 min-w-20 py-xsmall font-semibold capitalize cursor-pointer flex items-center justify-center transition-all bg-transparent hover:bg-gray-300 transition-all outline-none border-2 rounded-medium border-gray-300 "
                 type="button"
               >
                 Reset

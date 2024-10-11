@@ -115,7 +115,7 @@ export type InitialValuesUseFlashcards = {
 
 export type OverlayProps = {
   children: ReactNode;
-  handleOnClose: MouseEventHandler<HTMLDivElement>;
+  handleOnClose?: MouseEventHandler<HTMLDivElement>;
   isOverlayActive: boolean;
 };
 
@@ -123,4 +123,10 @@ export type TooltipProps = {
   elementRef: RefObject<HTMLElement>;
   children: React.ReactNode;
   direction: TooltipPositionEnum;
+};
+
+export type TestCourseProps = {
+  handleClickCloseTest: MouseEventHandler;
+  courseId: number;
+  countSentence: number;
 };

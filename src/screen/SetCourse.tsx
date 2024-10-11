@@ -40,6 +40,7 @@ const SetCourse: React.FC = () => {
     handleClickEdit,
     handleClickCreate,
   } = useFlashcards(initialState);
+  console.log(listSentences);
 
   return (
     <div className="container pt-medium pb-40">
@@ -123,7 +124,7 @@ const SetCourse: React.FC = () => {
                 sentence={sentence}
               />
             </div>
-            <div className="preview flex flex-col gap-large py-medium">
+            <div className="preview flex flex-col-reverse gap-large py-medium">
               {listSentences &&
                 listSentences.map((_item: ISentence, index: number) => (
                   <SentencePreview

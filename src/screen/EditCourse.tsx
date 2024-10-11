@@ -122,7 +122,7 @@ const EditCourse: React.FC = () => {
                 sentence={sentence}
               />
             </div>
-            <div className="preview flex flex-col gap-large py-medium">
+            <div className="preview flex flex-col-reverse gap-large py-medium">
               {listSentences &&
                 listSentences.map((_item: ISentence, index: number) => (
                   <SentencePreview
