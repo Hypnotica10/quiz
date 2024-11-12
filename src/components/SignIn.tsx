@@ -45,7 +45,7 @@ const SignIn: React.FC = () => {
             payload: resJson.data,
           });
           handleClickSignIn();
-          navigate("/");
+          navigate("/quiz");
           window.location.reload();
         }
       });

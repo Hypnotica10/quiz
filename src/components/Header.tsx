@@ -25,7 +25,7 @@ const Header: React.FC = () => {
               <Icon iconName="menu" />
             </div>
             <div className="text-twilight-500 ml-xsmall">
-              <Link to="/">
+              <Link to="/quiz">
                 <div className="w-8 h-10 flex justify-center">
                   <Icon iconName="minilogo" />
                 </div>
@@ -34,7 +34,7 @@ const Header: React.FC = () => {
           </div>
           <div className="pr-6 md:flex hidden">
             <div className="text-twilight-500 ml-xsmall">
-              <Link to="/">
+              <Link to="/quiz">
                 <div className="w-24 h-10 flex justify-center">
                   <Icon iconName="fulllogo" />
                 </div>

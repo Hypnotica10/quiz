@@ -32,7 +32,7 @@ const UserDropdown = () => {
           type: AuthActionsEnum.LOGOUT,
           payload: resJson.data,
         });
-        navigate("/");
+        navigate("/quiz");
         window.location.reload();
       }
     } catch (error) {
@@ -163,7 +163,7 @@ const Drawer: React.FC = () => {
               >
                 <Icon iconName="menu" />
               </div>
-              <Link to="/">
+              <Link to="/quiz">
                 <div className="w-10 h-10 p-xsmall text-twilight-500">
                   <Icon iconName="minilogo" />
                 </div>
@@ -206,7 +206,7 @@ const Drawer: React.FC = () => {
                 >
                   <Icon iconName="menu" />
                 </div>
-                <Link to="/">
+                <Link to="/quiz">
                   <div className="w-10 h-10 p-xxsmall text-twilight-500">
                     <Icon iconName="minilogo" />
                   </div>

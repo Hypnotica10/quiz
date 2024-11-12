@@ -311,7 +311,7 @@ export const drawerList: IDrawerListItem[] = [
   {
     tooltipText: "home",
     iconName: "home",
-    to: "/",
+    to: "/quiz",
   },
   {
     tooltipText: "library",

@@ -54,7 +54,7 @@ const AppRoutes: React.FC = () => {
         <Route path="/" element={state.authenticated ? <Drawer /> : <Layout />}>
           {/* public route */}
           <Route
-            path="/"
+            path="/quiz"
             element={state.authenticated ? <Course /> : <Home />}
           />
           <Route path="/flashcards" element={<Flashcards />} />

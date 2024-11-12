@@ -34,7 +34,7 @@ const YourLibrary: React.FC = () => {
     const getData = async (userId: number) => {
       if (isNaN(userId) || userId === 0) {
         handleToast("Invalid user Id", "error");
-        navigate("/");
+        navigate("/quiz");
         return;
       }
       try {

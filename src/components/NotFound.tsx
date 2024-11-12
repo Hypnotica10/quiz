@@ -19,7 +19,7 @@ const NotFound: React.FC = () => {
             type="button"
           >
             <Link
-              to="/"
+              to="/quiz"
               className="flex items-center justify-center gap-xsmall"
             >
               <div className="w-4 h-4">

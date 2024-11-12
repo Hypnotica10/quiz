@@ -241,7 +241,12 @@ const TestCourse: React.FC<TestCourseProps> = (props) => {
       : countSentence
   );
   const [informationQuizTest, setInformationQuizTest] =
-    useState<IQuizTestResponse>({});
+    useState<IQuizTestResponse>({
+      questionNumber: 0,
+      title: "",
+      listSentence: [],
+      solution: {},
+    });
   const [listAnswerFromUser, setListAnswerFromUser] =
     useState<ListAnswerFromUser>([]);
   const [submit, setSubmit] = useState<boolean>(false);
