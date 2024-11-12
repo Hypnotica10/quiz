@@ -35,11 +35,11 @@
         @apply max-w-64 mx-auto
     }
 
-    .card-wrapper {
-        perspective: 1000px;
-        transform-style: preserve-3d;
-        // transform: rotateX(20deg) rotateY(-20deg) translateX(-10%);
-    }
+    // .card-wrapper {
+    //     perspective: 1000px;
+    //     transform-style: preserve-3d;
+    //     // transform: rotateX(20deg) rotateY(-20deg) translateX(-10%);
+    // }
 
     .card {
         perspective: 1000px;
