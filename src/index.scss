@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    ::-moz-selection {
+        /* Code for Firefox */
+        @apply bg-twilight-200
+    }
+
+    ::selection {
+        @apply bg-twilight-200
+    }
+
+    ::-ms-input-placeholder {
+        /* Edge 12-18 */
+        @apply font-medium
+    }
+
+    ::placeholder {
+        @apply font-medium
+    }
+
+    body {
+        @apply text-gray-800 text-base font-sans
+    }
+}
+
+@layer components {
+    .section {
+        @apply w-full xl:px-xl md:px-large px-small py-medium
+    }
+
+    .max-content {
+        @apply max-w-64 mx-auto
+    }
+
+    // .card-wrapper {
+    //     perspective: 1000px;
+    //     transform-style: preserve-3d;
+    //     // transform: rotateX(20deg) rotateY(-20deg) translateX(-10%);
+    // }
+
+    .card {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+
+
+        .card-front.active {
+            transform: rotateX(180deg)
+        }
+
+        .card-back.active {
+            transform: rotateX(0deg);
+        }
+    }
+
+    .card-front {
+        backface-visibility: hidden;
+        transform: rotateX(0deg);
+    }
+
+    .card-back {
+        backface-visibility: hidden;
+        transform: rotateX(-180deg);
+    }
+
+    .tooltip-container {
+        @apply absolute capitalize text-xs rounded bg-gray-900 p-xsmall text-gray-100 font-semibold;
+    }
+}
